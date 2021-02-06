@@ -1,0 +1,11 @@
+oc apply -f simple-cluster.yaml
+
+oc rsh simple-cluster-kafka-0
+
+bin/kafka-console-producer.sh --broker-list simple-cluster-kafka-brokers:9092 --topic test-topic
+
+bin/kafka-console-consumer.sh --bootstrap-server simple-cluster-kafka-bootstrap:9092 --topic test-topic --from-beginning
+
+oc get kafka simple-cluster -o yaml
+
+oc delete kafka simple-cluster
