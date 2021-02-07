@@ -1,4 +1,4 @@
-apiVersion: kafka.strimzi.io/v1alpha1
+apiVersion: kafka.strimzi.io/v1beta1
 kind: Kafka
 metadata:
   name: amqs-cluster
@@ -6,8 +6,14 @@ spec:
   kafka:
     replicas: 3
     listeners:
-      plain: {}
-      tls: {}
+      - name: plain
+        port: 9092
+        type: internal
+        tls: false
+      - name: tls
+        port: 9093
+        type: internal
+        tls: true
     config:
       offsets.topic.replication.factor: 3
       transaction.state.log.replication.factor: 3

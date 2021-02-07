@@ -1,5 +1,5 @@
-oc apply -f timer-producer.yaml
-oc apply -f log-consumer.yaml
+oc apply -f deployment-timer-producer.yaml
+oc apply -f deployment-log-consumer.yaml
 
 oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1
 

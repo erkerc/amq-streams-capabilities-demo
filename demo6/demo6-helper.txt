@@ -1,0 +1,21 @@
+# Securing Listeners
+oc apply -f amqs-kafka-cluster-auth.yaml
+
+# Creating users and ACLs
+
+oc apply -f secure-kafka-topic-reader.yaml
+oc apply -f secure-kafka-topic-writer.yaml 
+
+oc get kafkausers
+
+oc get secrets|grep secure-topic
+
+oc apply -f deployment-log-consumer-secured.yaml
+
+
+oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1
+
+# change producer user to topic-reader
+
+oc delete deployment log-consumer
+oc delete deployment timer-producer
