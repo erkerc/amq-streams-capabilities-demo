@@ -1,0 +1,37 @@
+#Enable OpenShift Cluster & User Workload Monitoring
+oc apply -f cluster-monitoring-config.yaml
+oc apply -f user-workload-monitoring-config.yaml
+
+# Enable Metrcis
+oc apply -f amqs-cluster-metrics.yaml
+
+# Deploy Pod Monitor
+oc apply -f strimzi-pod-monitor.yaml
+
+# Deploy Grafana
+# Create Service Account
+oc apply -f grafana-sa.yaml
+
+# Create Cluster Role Binding
+oc apply -f grafana-cluster-monitoring-binding.yaml
+
+# Get Token
+export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
+
+# Create ConfigMap for Grafana
+oc create configmap grafana-config --from-file=datasource.yaml
+
+# Create Grafana deployment and service
+oc create -f grafana-application.yaml
+
+# Create Grafana Route
+
+oc create route edge grafana-route --service=grafana
+
+# Generate traffic
+oc apply -f deployment-timer-producer.yaml
+oc apply -f deployment-log-consumer.yaml
+
+oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1
+
+oc scale deployment timer-producer --replicas=5

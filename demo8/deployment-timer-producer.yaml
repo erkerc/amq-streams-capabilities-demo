@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timer-producer
+  labels:
+    app: kafka-workshop
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-workshop
+  template:
+    metadata:
+      labels:
+        app: kafka-workshop
+        name: timer-producer
+    spec:
+      containers:
+        - name: timer-producer
+          image: docker.io/mbogoevici/timer-producer:latest
+          env:
+            - name: CAMEL_COMPONENT_KAFKA_CONFIGURATION_BROKERS
+              value: "amqs-cluster-kafka-bootstrap:9092"

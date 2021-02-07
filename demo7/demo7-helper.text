@@ -1,0 +1,9 @@
+# Enable Healthchecks
+oc apply -f amqs-cluster-healthcheck.yaml
+
+#Enable OpenShift Cluster & User Workload Monitoring
+oc apply -f cluster-monitoring-config.yaml
+oc apply -f user-workload-monitoring-config.yaml
+
+# Enable Metrcis
+oc apply -f amqs-cluster-metrics.yaml
