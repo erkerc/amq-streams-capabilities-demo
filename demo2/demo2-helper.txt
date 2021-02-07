@@ -1,0 +1,10 @@
+/*Configuring your Kafka cluster depends on a number of factors, and in particular of your development and production requirements for throughput and scalability, but there are a few principles to observe:
+	• Making sure that you deploy at least 3 Kafka brokers for scaling and HA
+	• Making sure that topics are replicated on at least two nodes
+	• Making sure that your Zookeeper ensemble has at least 3 nodes
+	• Making sure that the data of your Kafka cluster is persistent*/
+
+oc apply -f amqs-kafka-cluster.yaml
+oc apply -f amqs-kafka-cluster-5r.yaml
+oc apply -f amqs-kafka-cluster.yaml
+

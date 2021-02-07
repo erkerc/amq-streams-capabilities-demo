@@ -1,0 +1,13 @@
+#metadata.name which is the name of the topic
+#metadata.labels[strimzi.io/cluster] which is the target cluster for the topic
+#spec.partitions which is the partition count of the topic
+#spec.replicas which is the number of replicas per partition
+#spec.config which contains miscellaneous configuration options, such as retention time and segment size
+
+oc apply -f kafka-topic-lines.yaml
+
+#login kafka broker
+oc rsh amqs-cluster-zookeeper-0
+
+# get topic info
+bin/kafka-topics.sh --zookeeper localhost:12181 --topic lines --describe
