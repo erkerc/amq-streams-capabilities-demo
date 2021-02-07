@@ -1,0 +1,7 @@
+oc apply -f timer-producer.yaml
+oc apply -f log-consumer.yaml
+
+oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1
+
+oc delete deployment log-consumer
+oc delete deployment timer-producer
