@@ -4,4 +4,4 @@
 * Demo 2 - High Available Kafka Cluster
 * Demo 3 - Topic Management
 * Demo 4 - Timer Producer and Log Consumer
-
+* Demo 5 - Clients: within OCP and outside OCP
