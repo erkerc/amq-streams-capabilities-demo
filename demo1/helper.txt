@@ -8,4 +8,6 @@ bin/kafka-console-consumer.sh --bootstrap-server simple-cluster-kafka-bootstrap:
 
 oc get kafka simple-cluster -o yaml
 
+oc delete kt test-topic
+
 oc delete kafka simple-cluster
