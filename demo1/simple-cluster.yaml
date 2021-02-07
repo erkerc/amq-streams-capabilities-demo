@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta1
 kind: Kafka
 metadata:
-  name: simple-cluster
+  name: amqs-cluster
 spec:
   kafka:
     replicas: 1

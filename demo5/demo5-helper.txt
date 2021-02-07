@@ -13,13 +13,13 @@ wget -O timer-producer.jar https://github.com/RedHatWorkshops/workshop-amq-strea
 
 # Run consumer
 java -jar log-consumer.jar \
-      --camel.component.kafka.configuration.brokers=amqs-cluster-kafka-route-bootstrap-amq-demo-test.apps.cluster-be66.be66.example.opentlc.com:443 \
+      --camel.component.kafka.configuration.brokers=amqs-cluster-kafka-route-bootstrap-kafka-demo.apps.cluster-be66.be66.example.opentlc.com:443 \
       --camel.component.kafka.configuration.security-protocol=SSL \
       --camel.component.kafka.configuration.ssl-truststore-location=keystore.jks \
       --camel.component.kafka.configuration.ssl-truststore-password=password
 # Run producer
 java -jar timer-producer.jar \
-      --camel.component.kafka.configuration.brokers=amqs-cluster-kafka-route-bootstrap-amq-demo-test.apps.cluster-be66.be66.example.opentlc.com:443 \
+      --camel.component.kafka.configuration.brokers=amqs-cluster-kafka-route-bootstrap-kafka-demo.apps.cluster-be66.be66.example.opentlc.com:443 \
       --camel.component.kafka.configuration.security-protocol=SSL \
       --camel.component.kafka.configuration.ssl-truststore-location=keystore.jks \
       --camel.component.kafka.configuration.ssl-truststore-password=password --server.port=0
