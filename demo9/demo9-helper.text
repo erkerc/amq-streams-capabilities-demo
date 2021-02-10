@@ -9,3 +9,5 @@ oc apply -f ../demo4/deployment-log-consumer.yaml -n kafka-monitoring-demo
 oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1 -n kafka-monitoring-demo
 
 oc scale deployment timer-producer --replicas=5
+
+oc delete kmm2 my-mirror-maker2  -n kafka-monitoring-demo

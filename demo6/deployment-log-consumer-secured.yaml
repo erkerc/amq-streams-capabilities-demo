@@ -20,7 +20,7 @@ spec:
           image: docker.io/mbogoevici/log-consumer:latest
           env:
             - name: CAMEL_COMPONENT_KAFKA_CONFIGURATION_BROKERS
-              value: "amqs-cluster-kafka-bootstrap:9093"
+              value: "amqs-cluster-kafka-bootstrap:9092"
             - name: CAMEL_COMPONENT_KAFKA_CONFIGURATION_GROUP_ID
               value: secure-group
             - name: CAMEL_COMPONENT_KAFKA_CONFIGURATION_SASL_JAAS_CONFIG

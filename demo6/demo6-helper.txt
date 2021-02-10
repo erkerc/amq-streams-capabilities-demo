@@ -10,6 +10,8 @@ oc get kafkausers
 
 oc get secrets|grep secure-topic
 
+
+oc apply -f deployment-timer-producer-secured.yaml
 oc apply -f deployment-log-consumer-secured.yaml
 
 
