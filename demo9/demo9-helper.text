@@ -1,11 +1,11 @@
 
 # Deploy Mirror Maker 2
-oc apply -f kafka-mirror-maker2.yaml -n kafka-metrics-demo
+oc apply -f kafka-mirror-maker2.yaml -n kafka-monitoring-demo
 
 # Generate traffic
 oc apply -f ../demo4/deployment-timer-producer.yaml -n kafka-demo
-oc apply -f ../demo4/deployment-log-consumer.yaml -n kafka-metrics-demo
+oc apply -f ../demo4/deployment-log-consumer.yaml -n kafka-monitoring-demo
 
-oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1 -n kafka-metrics-demo
+oc logs -f log-consumer-XXXX -c log-consumer  --tail=-1 -n kafka-monitoring-demo
 
 oc scale deployment timer-producer --replicas=5

@@ -8,5 +8,5 @@
 * Demo 6 - Authentication and Authorization
 * Demo 7 - Healthcheck
 * Demo 8 - Monitoring
-* Demo 9 - Replication
+* Demo 9 - Replication with Mirror Maker 2
 

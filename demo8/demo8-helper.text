@@ -1,9 +1,13 @@
+
+# Create kafka Cluster, expose metrics
+oc new-project kafka-monitoring-demo
+oc apply -f amqs-cluster-metrics.yaml
+
 #Enable OpenShift Cluster & User Workload Monitoring
 oc apply -f cluster-monitoring-config.yaml
 oc apply -f user-workload-monitoring-config.yaml
 
-# Enable Metrcis
-oc apply -f amqs-cluster-metrics.yaml
+
 
 # Deploy Pod Monitor
 oc apply -f strimzi-pod-monitor.yaml
@@ -15,10 +19,11 @@ oc apply -f grafana-sa.yaml
 # Create Cluster Role Binding
 oc apply -f grafana-cluster-monitoring-binding.yaml
 
-# Get Token
-export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
+# get and replace token
+#export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
+gsed -i "s/AUTHORIZATION_TOKEN/$(oc serviceaccounts get-token grafana-serviceaccount)/g" datasource.yaml
 
-# Create ConfigMap for Grafana
+# Create ConfigMap for Grafana, update token in datasource.yaml
 oc create configmap grafana-config --from-file=datasource.yaml
 
 # Create Grafana deployment and service
@@ -27,6 +32,9 @@ oc create -f grafana-application.yaml
 # Create Grafana Route
 
 oc create route edge grafana-route --service=grafana
+
+#login grafana admin/admin
+# import dgrafana dashboards
 
 # Generate traffic
 oc apply -f deployment-timer-producer.yaml
