@@ -10,7 +10,7 @@ spec:
       strimzi.io/kind: cluster-operator
   namespaceSelector:
     matchNames:
-      - kafka-metrics-monitor
+      - kafka-monitoring-demo
   podMetricsEndpoints:
   - path: /metrics
     port: http
@@ -27,7 +27,7 @@ spec:
       app.kubernetes.io/name: entity-operator
   namespaceSelector:
     matchNames:
-      - myproject
+      - kafka-monitoring-demo
   podMetricsEndpoints:
   - path: /metrics
     port: healthcheck
@@ -44,7 +44,7 @@ spec:
       strimzi.io/kind: KafkaBridge
   namespaceSelector:
     matchNames:
-      - kafka-metrics-monitor
+      - kafka-monitoring-demo
   podMetricsEndpoints:
   - path: /metrics
     port: rest-api
@@ -60,10 +60,10 @@ spec:
     matchExpressions:
       - key: "strimzi.io/kind"
         operator: In
-        values: ["Kafka", "KafkaConnect", "KafkaConnectS2I", "KafkaMirrorMaker", "KafkaMirrorMaker2"]
+        values: ["Kafka", "KafkaConnect", "KafkaMirrorMaker", "KafkaMirrorMaker2"]
   namespaceSelector:
     matchNames:
-      - kafka-metrics-monitor
+      - kafka-monitoring-demo
   podMetricsEndpoints:
   - path: /metrics
     port: tcp-prometheus

@@ -1,6 +1,7 @@
 
 # Create kafka Cluster, expose metrics
 oc new-project kafka-monitoring-demo
+oc apply -f kafka-metrics-cm.yaml
 oc apply -f amqs-cluster-metrics.yaml
 
 #Enable OpenShift Cluster & User Workload Monitoring
@@ -20,8 +21,8 @@ oc apply -f grafana-sa.yaml
 oc apply -f grafana-cluster-monitoring-binding.yaml
 
 # get and replace token
-#export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
-gsed -i "s/AUTHORIZATION_TOKEN/$(oc serviceaccounts get-token grafana-serviceaccount)/g" datasource.yaml
+export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
+#gsed -i "s/AUTHORIZATION_TOKEN/$(oc serviceaccounts get-token grafana-serviceaccount)/g" datasource.yaml
 
 # Create ConfigMap for Grafana, update token in datasource.yaml
 oc create configmap grafana-config --from-file=datasource.yaml
