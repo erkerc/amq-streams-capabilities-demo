@@ -22,9 +22,9 @@ oc apply -f grafana-cluster-monitoring-binding.yaml
 
 # get and replace token
 #export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
-export ACCESS_TOKEN=$(oc create token grafana-serviceaccount)
+export AUTHORIZATION_TOKEN=$(oc create token grafana-serviceaccount --duration=72h)
 
-#gsed -i "s/AUTHORIZATION_TOKEN/$(oc serviceaccounts get-token grafana-serviceaccount)/g" datasource.yaml
+sed -i "s/AUTHORIZATION_TOKEN/$(oc serviceaccounts get-token grafana-serviceaccount)/g" datasource.yaml
 
 # Create ConfigMap for Grafana, update token in datasource.yaml
 oc create configmap grafana-config --from-file=datasource.yaml
