@@ -37,7 +37,7 @@ oc create -f grafana-application.yaml
 oc create route edge grafana-route --service=grafana
 
 #login grafana admin/admin
-# import dgrafana dashboards
+# import grafana dashboards
 
 # Generate traffic
 oc apply -f deployment-timer-producer.yaml
