@@ -21,8 +21,13 @@ oc apply -f grafana-sa.yaml
 oc apply -f grafana-cluster-monitoring-binding.yaml
 
 # get and replace token
-#export ACCESS_TOKEN=$(oc serviceaccounts get-token grafana-serviceaccount)
-export AUTHORIZATION_TOKEN=$(oc create token grafana-serviceaccount --duration=72h)
+oc describe sa/grafana-service-account | grep Tokens:
+oc describe secret <grafana-service-account-token-name>| grep token:
+export AUTHORIZATION_TOKEN_NAME=$(oc describe sa/grafana-service-account | grep Tokens:|awk '{print $2}')
+export AUTHORIZATION_TOKEN=$(oc describe secret $AUTHORIZATION_TOKEN_NAME | grep token:|awk '{print $2}')
+
+
+
 
 sed -i "s/AUTHORIZATION_TOKEN/$(oc create token grafana-serviceaccount --duration=72h)/g" datasource.yaml
 

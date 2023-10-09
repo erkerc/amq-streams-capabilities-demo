@@ -6,7 +6,7 @@ metadata:
     app: strimzi
 subjects:
   - kind: ServiceAccount
-    name: grafana-serviceaccount
+    name: grafana-service-account
     namespace: kafka-monitoring-demo 
 roleRef:
   kind: ClusterRole
