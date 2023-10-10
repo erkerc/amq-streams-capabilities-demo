@@ -10,8 +10,10 @@ oc apply -f user-workload-monitoring-config.yaml
 
 
 
-# Deploy Pod Monitor
+# Deploy Pod Monitor (listens 9404 port)
 oc apply -f strimzi-pod-monitor.yaml
+oc apply -f prometheus-rules.yaml
+
 
 # Deploy Grafana
 # Create Service Account
