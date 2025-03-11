@@ -1,4 +1,4 @@
-# AMQ Streams Capabilities Demo x
+# AMQ Streams Capabilities Demo xx
 # Outline
 * Demo 1 - Simple Kafka Cluster
 * Demo 2 - High Available Kafka Cluster
